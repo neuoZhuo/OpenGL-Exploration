@@ -1,6 +1,10 @@
+node_modules/
+
 .tmp/
 .cache/
 
 *.log
 *.logs
 *.zip
+
+.template.html

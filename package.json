@@ -1,0 +1,27 @@
+{
+  "name": "OpenGL-exploration",
+  "author": "zhuo",
+  "version": "0.0.1",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,html,json}": [
+        "prettier --write",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "node_modules/**"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.3",
+    "prettier": "^1.16.4"
+  }
+}
