@@ -3,6 +3,9 @@ node_modules/
 .tmp/
 .cache/
 
+dist/
+build/
+
 *.log
 *.logs
 *.zip

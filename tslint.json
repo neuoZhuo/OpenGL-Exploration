@@ -1,0 +1,21 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "rules": {
+    "member-access": [
+      true,
+      "check-accessor",
+      "check-constructor",
+      "check-parameter-property"
+    ],
+    "object-literal-sort-keys": false,
+    "no-console": false,
+    "variable-name": [true, "allow-leading-underscore"],
+    "max-classes-per-file": false,
+    "interface-name": false,
+    "no-bitwise": false
+  },
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": ["**/*.js"]
+  }
+}
