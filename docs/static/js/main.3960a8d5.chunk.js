@@ -38,7 +38,7 @@
       function S() {
         for (var e = arguments.length, t = new Array(e), a = 0; a < e; a++)
           t[a] = arguments[a];
-        return t.join("/").replace(/\/+/g, "/");
+        return t.join("/").replace(/(?<!https?:)\/+/g, "/");
       }
       function J(e) {
         if (e.docNo >= 0) {
@@ -465,4 +465,4 @@
   },
   [[102, 2, 1]],
 ]);
-//# sourceMappingURL=main.38f6c2fd.chunk.js.map
+//# sourceMappingURL=main.3960a8d5.chunk.js.map

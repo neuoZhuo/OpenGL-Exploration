@@ -2,7 +2,7 @@ import { DEFAULT_TITLE } from "./common";
 import { docs, DocumentSelector } from "./docs";
 
 export function joinPath(...paths: string[]): string {
-  return paths.join("/").replace(/\/+/g, "/");
+  return paths.join("/").replace(/(?<!https?:)\/+/g, "/");
 }
 
 export function toPath(selector: DocumentSelector) {
