@@ -95,6 +95,9 @@ class Item extends React.Component<
                     <ListItemText
                       className={classes.nestedText}
                       secondary={ele.name}
+                      secondaryTypographyProps={{
+                        noWrap: true,
+                      }}
                     />
                   </ListItem>
                 );

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>three.js webgl - geometry - cube</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -15,13 +14,12 @@
     </style>
   </head>
   <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/93/three.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.js"></script>
 
     <script>
       var camera, scene, renderer;
       var mesh;
       init();
-      animate();
       function init() {
         camera = new THREE.PerspectiveCamera(
           70,
@@ -51,10 +49,7 @@
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
-      }
 
-      function animate() {
-        requestAnimationFrame(animate);
         renderer.render(scene, camera);
       }
     </script>
