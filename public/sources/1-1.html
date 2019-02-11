@@ -15,15 +15,14 @@
   </head>
   <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.js"></script>
-    <!-- all right reserved @ https://github.com/mrdoob/three.js/blob/master/examples/webgl_camera.html -->
 
     <script>
       var container;
       var camera, scene, renderer, mesh;
-      var cameraPerspective, cameraOrtho;
-      var cameraPerspectiveHelper, cameraOrthoHelper;
-      var frustumSize = 600;
+      var cameraOrtho;
+      var cameraOrthoHelper;
       init();
+      animate();
       function init() {
         scene = new THREE.Scene();
 
@@ -34,20 +33,11 @@
         camera.position.z = 200;
         camera.lookAt(new THREE.Vector3(0, 0, 200));
 
-        cameraPerspective = new THREE.PerspectiveCamera(
-          50,
-          0.5 * aspect,
-          150,
-          1000
-        );
-        cameraPerspectiveHelper = new THREE.CameraHelper(cameraPerspective);
-        scene.add(cameraPerspectiveHelper);
-
         cameraOrtho = new THREE.OrthographicCamera(
-          -150 * aspect,
-          150 * aspect,
-          150,
-          -150,
+          -100 * aspect,
+          100 * aspect,
+          200,
+          -200,
           150,
           1000
         );
@@ -55,7 +45,6 @@
         scene.add(cameraOrthoHelper);
 
         cameraOrtho.rotation.y = Math.PI;
-        cameraPerspective.rotation.y = Math.PI;
 
         mesh = new THREE.Mesh(
           new THREE.SphereBufferGeometry(100, 16, 8),
@@ -71,38 +60,31 @@
         mesh.position.set(0, 0, 350);
         mesh.add(mesh2);
 
+        cameraOrtho.far = mesh.position.length();
+        cameraOrtho.updateProjectionMatrix();
+        cameraOrthoHelper.update();
+
+        cameraOrtho.lookAt(mesh.position);
+
         renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.autoClear = false;
 
         document.body.appendChild(renderer.domElement);
+      }
 
+      function animate() {
+        requestAnimationFrame(animate);
+        mesh.rotation.x += 0.01;
         render();
       }
 
       function render() {
         renderer.clear();
 
-        cameraPerspective.fov = 60;
-        cameraPerspective.far = mesh.position.length();
-        cameraPerspective.updateProjectionMatrix();
-        cameraPerspectiveHelper.update();
-        cameraPerspectiveHelper.visible = true;
-        cameraOrthoHelper.visible = false;
-
-        cameraPerspective.lookAt(mesh.position);
-
         renderer.setViewport(0, 0, window.innerWidth / 2, window.innerHeight);
         renderer.render(scene, camera);
-
-        cameraOrtho.far = mesh.position.length();
-        cameraOrtho.updateProjectionMatrix();
-        cameraOrthoHelper.update();
-        cameraOrthoHelper.visible = true;
-        cameraPerspectiveHelper.visible = false;
-
-        cameraOrtho.lookAt(mesh.position);
 
         renderer.setViewport(
           window.innerWidth / 2,
@@ -110,7 +92,7 @@
           window.innerWidth / 2,
           window.innerHeight
         );
-        renderer.render(scene, camera);
+        renderer.render(scene, cameraOrtho);
       }
     </script>
   </body>
