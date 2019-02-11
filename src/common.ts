@@ -3,7 +3,7 @@ export const GITHUB_PREFIX =
 export const SOURCE_PREFIX = "sources";
 
 export const GITHUB = "https://github.com/neuoZhuo/OpenGL-Exploration";
-export const ZHIHU = "https://www.zhihu.com/people/neuo/activities";
+export const ZHIHU = "https://zhuanlan.zhihu.com/c_1078287059323654144";
 
 export const ZHIHU_PREFIX = "https://zhuanlan.zhihu.com/p/";
 
