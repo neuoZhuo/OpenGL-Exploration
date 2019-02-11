@@ -12,7 +12,7 @@ export function toPath(selector: DocumentSelector) {
 export function setTitle(selector: DocumentSelector) {
   if (selector.docNo >= 0) {
     const doc = docs[selector.docNo];
-    document.title = doc.name + " " + doc.sequences[selector.seqNo].name;
+    document.title = doc.name + " / " + doc.sequences[selector.seqNo].name;
     console.log(document.title);
   } else {
     document.title = DEFAULT_TITLE;

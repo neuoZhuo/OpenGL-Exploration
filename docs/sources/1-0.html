@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.js"></script>
+
+    <script>
+      var camera, scene, renderer;
+      var mesh;
+      init();
+      animate();
+      function init() {
+        camera = new THREE.PerspectiveCamera(
+          70,
+          window.innerWidth / window.innerHeight,
+          1,
+          200
+        );
+        camera.position.z = 60;
+
+        var light = new THREE.PointLight(0xffffff, 1, 0);
+
+        light.position.set(0, 0, 60);
+
+        scene = new THREE.Scene();
+
+        scene.add(light);
+
+        var geometry = new THREE.PlaneBufferGeometry(20, 20);
+
+        var meshMaterial = new THREE.MeshPhongMaterial({
+          color: 0x0000ff,
+          side: THREE.FrontSide,
+        });
+
+        mesh = new THREE.Mesh(geometry, meshMaterial);
+        scene.add(mesh);
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        mesh.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+    </script>
+  </body>
+</html>

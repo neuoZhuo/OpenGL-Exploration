@@ -8,8 +8,8 @@
       "use strict";
       a.r(t);
       var n = a(101),
-        o = a.n(n),
-        r = a(16),
+        r = a.n(n),
+        o = a(16),
         c = a(0),
         i = a.n(c),
         s = a(17),
@@ -43,7 +43,7 @@
       function J(e) {
         if (e.docNo >= 0) {
           var t = x[e.docNo];
-          (document.title = t.name + " " + t.sequences[e.seqNo].name),
+          (document.title = t.name + " / " + t.sequences[e.seqNo].name),
             console.log(document.title);
         } else document.title = k;
       }
@@ -53,44 +53,41 @@
           a = e.match(R);
         if (a) {
           var n = a.length > 1 && void 0 !== a[1] ? parseInt(a[1], 10) : -1,
-            o = a.length > 2 && void 0 !== a[2] ? parseInt(a[2], 10) : 0;
+            r = a.length > 2 && void 0 !== a[2] ? parseInt(a[2], 10) : 0;
           t =
             n < 0 || n >= x.length
               ? { docNo: -1, seqNo: 0 }
-              : o < 0 && o >= x[n].sequences.length
-              ? { docNo: n, seqNo: o }
+              : r < 0 && r >= x[n].sequences.length
+              ? { docNo: n, seqNo: r }
               : { docNo: n, seqNo: 0 };
         } else t = { docNo: -1, seqNo: 0 };
         return J(t), t;
       }
       var P = a(86),
-        q = a.n(P),
-        V = a(53),
-        T = a.n(V),
-        U = a(54),
-        G = a.n(U),
+        V = a.n(P),
+        T = a(53),
+        U = a.n(T),
+        q = a(54),
+        G = a.n(q),
         Q = a(84),
-        C = a.n(Q),
-        H = a(85),
-        L = a.n(H),
+        H = a.n(Q),
+        C = a(85),
+        L = a.n(C),
         M = (function(e) {
           function t() {
             var e, a;
             Object(A.a)(this, t);
-            for (var n = arguments.length, o = new Array(n), r = 0; r < n; r++)
-              o[r] = arguments[r];
+            for (var n = arguments.length, r = new Array(n), o = 0; o < n; o++)
+              r[o] = arguments[o];
             return (
               ((a = Object(m.a)(
                 this,
-                (e = Object(d.a)(t)).call.apply(e, [this].concat(o))
-              )).hasCollapse = a.props.doc.sequences.length > 1),
-              (a.state = { open: !1 }),
+                (e = Object(d.a)(t)).call.apply(e, [this].concat(r))
+              )).state = { open: !1 }),
               (a.handleClick = function() {
-                a.hasCollapse
-                  ? a.setState(function(e) {
-                      return { open: !e.open };
-                    })
-                  : a.props.doc.sequences.length > 0 && a.props.selectSeq(0);
+                a.setState(function(e) {
+                  return { open: !e.open };
+                });
               }),
               a
             );
@@ -109,7 +106,7 @@
                     "div",
                     null,
                     i.a.createElement(
-                      T.a,
+                      U.a,
                       {
                         button: !0,
                         onClick: this.handleClick,
@@ -122,44 +119,40 @@
                           variant: "body2",
                         },
                       }),
-                      this.hasCollapse
-                        ? this.state.open
-                          ? i.a.createElement(C.a, null)
-                          : i.a.createElement(L.a, null)
-                        : null
+                      this.state.open
+                        ? i.a.createElement(H.a, null)
+                        : i.a.createElement(L.a, null)
                     ),
-                    this.hasCollapse
-                      ? i.a.createElement(
-                          q.a,
-                          {
-                            in: this.state.open,
-                            timeout: "auto",
-                            unmountOnExit: !0,
-                          },
-                          i.a.createElement(
-                            O.a,
-                            { disablePadding: !0 },
-                            a.sequences.map(function(e, a) {
-                              return i.a.createElement(
-                                T.a,
-                                {
-                                  button: !0,
-                                  className: t.nested,
-                                  onClick: function() {
-                                    n(a);
-                                  },
-                                  key: a,
-                                },
-                                i.a.createElement(G.a, {
-                                  className: t.nestedText,
-                                  secondary: e.name,
-                                  secondaryTypographyProps: { noWrap: !0 },
-                                })
-                              );
+                    i.a.createElement(
+                      V.a,
+                      {
+                        in: this.state.open,
+                        timeout: "auto",
+                        unmountOnExit: !0,
+                      },
+                      i.a.createElement(
+                        O.a,
+                        { disablePadding: !0 },
+                        a.sequences.map(function(e, a) {
+                          return i.a.createElement(
+                            U.a,
+                            {
+                              button: !0,
+                              className: t.nested,
+                              onClick: function() {
+                                n(a);
+                              },
+                              key: a,
+                            },
+                            i.a.createElement(G.a, {
+                              className: t.nestedText,
+                              secondary: e.name,
+                              secondaryTypographyProps: { noWrap: !0 },
                             })
-                          )
-                        )
-                      : null
+                          );
+                        })
+                      )
+                    )
                   );
                 },
               },
@@ -167,9 +160,9 @@
             t
           );
         })(i.a.Component),
-        Z = Object(r.withStyles)(function(e) {
+        Z = Object(o.withStyles)(function(e) {
           return Object(
-            r.createStyles
+            o.createStyles
           )({ root: { display: "flex" }, item: { paddingTop: 4, paddingBottom: 4 }, nested: { paddingTop: 4, paddingBottom: 4 }, nestedText: { padding: 0 }, nestedIcon: { marginRight: 8 } });
         })(M),
         X = a(94),
@@ -183,8 +176,8 @@
         te = a(93),
         ae = a.n(te),
         ne = a(55),
-        oe = a.n(ne),
-        re = a(87),
+        re = a.n(ne),
+        oe = a(87),
         ce = a(88),
         ie = a.n(ce),
         se = a(89),
@@ -208,13 +201,13 @@
                     { className: e.card },
                     i.a.createElement(ee.a, {
                       title: "OpenGL Exploration",
-                      subheader: "@version " + re.version,
+                      subheader: "@version " + oe.version,
                     }),
                     i.a.createElement(
                       _.a,
                       { className: e.actions, disableActionSpacing: !0 },
                       i.a.createElement(
-                        oe.a,
+                        re.a,
                         {
                           title: "View project source on GitHub",
                           placement: "top",
@@ -235,7 +228,7 @@
                         )
                       ),
                       i.a.createElement(
-                        oe.a,
+                        re.a,
                         {
                           title: "View documents on \u77e5\u4e4e",
                           placement: "top",
@@ -262,21 +255,21 @@
             t
           );
         })(i.a.Component),
-        Ae = Object(r.withStyles)(function(e) {
+        Ae = Object(o.withStyles)(function(e) {
           return Object(
-            r.createStyles
+            o.createStyles
           )({ card: { boxShadow: "none" }, actions: { display: "flex" }, icon: { width: 18, height: 18 }, button: { height: 18 } });
         })(ue),
         pe = (function(e) {
           function t() {
             var e, a;
             Object(A.a)(this, t);
-            for (var n = arguments.length, o = new Array(n), r = 0; r < n; r++)
-              o[r] = arguments[r];
+            for (var n = arguments.length, r = new Array(n), o = 0; o < n; o++)
+              r[o] = arguments[o];
             return (
               ((a = Object(m.a)(
                 this,
-                (e = Object(d.a)(t)).call.apply(e, [this].concat(o))
+                (e = Object(d.a)(t)).call.apply(e, [this].concat(r))
               )).state = { selector: Y(a.props.location.pathname) }),
               (a.selectDoc = function(e, t) {
                 var n = { docNo: e, seqNo: t };
@@ -304,9 +297,9 @@
                     a = this.state.selector,
                     n = "";
                   if (a.docNo >= 0) {
-                    var o = a.docNo,
-                      r = a.seqNo;
-                    n = S("sources", x[o].sequences[r].url);
+                    var r = a.docNo,
+                      o = a.seqNo;
+                    n = S("sources", x[r].sequences[o].url);
                   }
                   return i.a.createElement(
                     "div",
@@ -394,18 +387,18 @@
           );
         })(i.a.Component),
         me = Object(D.a)(
-          Object(r.withStyles)(function(e) {
+          Object(o.withStyles)(function(e) {
             return Object(
-              r.createStyles
+              o.createStyles
             )({ root: { display: "flex", height: "100vh" }, drawer: { width: 320, flexShrink: 0, display: "flex", flexDirection: "column" }, drawerPaper: { width: 320 }, content: { flexGrow: 1, height: "100%", overflow: "hidden" }, frame: { width: "100%", height: "100%", border: 0 }, title: { flexGrow: 0 }, list: { flexGrow: 1, overflow: "auto" }, buttons: { position: "fixed", right: 20, bottom: 20, display: "flex" }, button: { margin: e.spacing.unit }, rightIcon: { marginLeft: e.spacing.unit } });
           })(pe)
         ),
-        de = Object(r.createMuiTheme)({ typography: { useNextVariants: !0 } });
+        de = Object(o.createMuiTheme)({ typography: { useNextVariants: !0 } });
       l.a.render(
         i.a.createElement(
-          r.MuiThemeProvider,
+          o.MuiThemeProvider,
           { theme: de },
-          i.a.createElement(o.a, null),
+          i.a.createElement(r.a, null),
           i.a.createElement(u.a, null, i.a.createElement(me, null))
         ),
         document.querySelector("#root")
@@ -466,4 +459,4 @@
   },
   [[102, 2, 1]],
 ]);
-//# sourceMappingURL=main.fc70f263.chunk.js.map
+//# sourceMappingURL=main.9b3e2211.chunk.js.map

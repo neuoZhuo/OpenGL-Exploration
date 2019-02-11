@@ -44,18 +44,12 @@ class Item extends React.Component<
     open: boolean;
   }
 > {
-  public readonly hasCollapse = this.props.doc.sequences.length > 1;
-
   public state = {
     open: false,
   };
 
   public handleClick = () => {
-    if (this.hasCollapse) {
-      this.setState(state => ({ open: !state.open }));
-    } else if (this.props.doc.sequences.length > 0) {
-      this.props.selectSeq(0);
-    }
+    this.setState(state => ({ open: !state.open }));
   };
 
   public render() {
@@ -71,40 +65,32 @@ class Item extends React.Component<
               variant: "body2",
             }}
           />
-          {this.hasCollapse ? (
-            this.state.open ? (
-              <ExpandLess />
-            ) : (
-              <ExpandMore />
-            )
-          ) : null}
+          {this.state.open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
-        {this.hasCollapse ? (
-          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-            <List disablePadding>
-              {doc.sequences.map((ele, index) => {
-                return (
-                  <ListItem
-                    button
-                    className={classes.nested}
-                    onClick={() => {
-                      selectSeq(index);
+        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+          <List disablePadding>
+            {doc.sequences.map((ele, index) => {
+              return (
+                <ListItem
+                  button
+                  className={classes.nested}
+                  onClick={() => {
+                    selectSeq(index);
+                  }}
+                  key={index}
+                >
+                  <ListItemText
+                    className={classes.nestedText}
+                    secondary={ele.name}
+                    secondaryTypographyProps={{
+                      noWrap: true,
                     }}
-                    key={index}
-                  >
-                    <ListItemText
-                      className={classes.nestedText}
-                      secondary={ele.name}
-                      secondaryTypographyProps={{
-                        noWrap: true,
-                      }}
-                    />
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Collapse>
-        ) : null}
+                  />
+                </ListItem>
+              );
+            })}
+          </List>
+        </Collapse>
       </div>
     );
   }
