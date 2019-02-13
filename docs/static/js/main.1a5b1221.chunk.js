@@ -47,10 +47,11 @@
             console.log(document.title);
         } else document.title = k;
       }
-      var R = /^\/(\d+)(?:\/(\d+))?/;
-      function Y(e) {
+      var R = { docNo: 1, seqNo: 2 },
+        Y = /^\/(\d+)(?:\/(\d+))?/;
+      function P(e) {
         var t,
-          a = e.match(R);
+          a = e.match(Y);
         if (a) {
           var n = a.length > 1 && void 0 !== a[1] ? parseInt(a[1], 10) : -1,
             r = a.length > 2 && void 0 !== a[2] ? parseInt(a[2], 10) : 0;
@@ -60,20 +61,20 @@
               : r >= 0 && r < x[n].sequences.length
               ? { docNo: n, seqNo: r }
               : { docNo: n, seqNo: 0 };
-        } else t = { docNo: -1, seqNo: 0 };
+        } else t = R;
         return J(t), t;
       }
-      var P = a(86),
-        V = a.n(P),
-        T = a(53),
-        U = a.n(T),
-        q = a(54),
-        G = a.n(q),
-        Q = a(84),
-        H = a.n(Q),
-        C = a(85),
-        L = a.n(C),
-        M = (function(e) {
+      var V = a(86),
+        T = a.n(V),
+        U = a(53),
+        q = a.n(U),
+        G = a(54),
+        Q = a.n(G),
+        H = a(84),
+        C = a.n(H),
+        L = a(85),
+        M = a.n(L),
+        Z = (function(e) {
           function t() {
             var e, a;
             Object(A.a)(this, t);
@@ -106,13 +107,13 @@
                     "div",
                     null,
                     i.a.createElement(
-                      U.a,
+                      q.a,
                       {
                         button: !0,
                         onClick: this.handleClick,
                         className: t.item,
                       },
-                      i.a.createElement(G.a, {
+                      i.a.createElement(Q.a, {
                         primary: a.name,
                         primaryTypographyProps: {
                           noWrap: !0,
@@ -120,11 +121,11 @@
                         },
                       }),
                       this.state.open
-                        ? i.a.createElement(H.a, null)
-                        : i.a.createElement(L.a, null)
+                        ? i.a.createElement(C.a, null)
+                        : i.a.createElement(M.a, null)
                     ),
                     i.a.createElement(
-                      V.a,
+                      T.a,
                       {
                         in: this.state.open,
                         timeout: "auto",
@@ -135,7 +136,7 @@
                         { disablePadding: !0 },
                         a.sequences.map(function(e, a) {
                           return i.a.createElement(
-                            U.a,
+                            q.a,
                             {
                               button: !0,
                               className: t.nested,
@@ -144,7 +145,7 @@
                               },
                               key: a,
                             },
-                            i.a.createElement(G.a, {
+                            i.a.createElement(Q.a, {
                               className: t.nestedText,
                               secondary: e.name,
                               secondaryTypographyProps: { noWrap: !0 },
@@ -160,29 +161,29 @@
             t
           );
         })(i.a.Component),
-        Z = Object(o.withStyles)(function(e) {
+        X = Object(o.withStyles)(function(e) {
           return Object(
             o.createStyles
           )({ root: { display: "flex" }, item: { paddingTop: 4, paddingBottom: 4 }, nested: { paddingTop: 4, paddingBottom: 4 }, nestedText: { padding: 0 }, nestedIcon: { marginRight: 8 } });
-        })(M),
-        X = a(94),
-        W = a.n(X),
-        K = a(90),
-        F = a.n(K),
-        z = a(92),
-        _ = a.n(z),
-        $ = a(91),
-        ee = a.n($),
-        te = a(93),
-        ae = a.n(te),
-        ne = a(55),
-        re = a.n(ne),
-        oe = a(87),
-        ce = a(88),
-        ie = a.n(ce),
-        se = a(89),
-        le = a.n(se),
-        ue = (function(e) {
+        })(Z),
+        W = a(94),
+        K = a.n(W),
+        F = a(90),
+        z = a.n(F),
+        _ = a(92),
+        $ = a.n(_),
+        ee = a(91),
+        te = a.n(ee),
+        ae = a(93),
+        ne = a.n(ae),
+        re = a(55),
+        oe = a.n(re),
+        ce = a(87),
+        ie = a(88),
+        se = a.n(ie),
+        le = a(89),
+        ue = a.n(le),
+        Ae = (function(e) {
           function t() {
             return (
               Object(A.a)(this, t),
@@ -197,38 +198,38 @@
                 value: function() {
                   var e = this.props.classes;
                   return i.a.createElement(
-                    F.a,
+                    z.a,
                     { className: e.card },
-                    i.a.createElement(ee.a, {
+                    i.a.createElement(te.a, {
                       title: "OpenGL Exploration",
-                      subheader: "@version " + oe.version,
+                      subheader: "@version " + ce.version,
                     }),
                     i.a.createElement(
-                      _.a,
+                      $.a,
                       { className: e.actions, disableActionSpacing: !0 },
                       i.a.createElement(
-                        re.a,
+                        oe.a,
                         {
                           title: "View project source on GitHub",
                           placement: "top",
                         },
                         i.a.createElement(
-                          ae.a,
+                          ne.a,
                           {
                             href:
                               "https://github.com/neuoZhuo/OpenGL-Exploration",
                             target: "_blank",
                             "aria-label": "GitHub",
                           },
-                          i.a.createElement(W.a, {
+                          i.a.createElement(K.a, {
                             className: e.icon,
                             alt: "GitHub",
-                            src: ie.a,
+                            src: se.a,
                           })
                         )
                       ),
                       i.a.createElement(
-                        re.a,
+                        oe.a,
                         {
                           title: "View documents on \u77e5\u4e4e",
                           placement: "top",
@@ -243,7 +244,7 @@
                           },
                           i.a.createElement("img", {
                             className: e.button,
-                            src: le.a,
+                            src: ue.a,
                           })
                         )
                       )
@@ -255,12 +256,12 @@
             t
           );
         })(i.a.Component),
-        Ae = Object(o.withStyles)(function(e) {
+        pe = Object(o.withStyles)(function(e) {
           return Object(
             o.createStyles
           )({ card: { boxShadow: "none" }, actions: { display: "flex" }, icon: { width: 18, height: 18 }, button: { height: 18 } });
-        })(ue),
-        pe = (function(e) {
+        })(Ae),
+        me = (function(e) {
           function t() {
             var e, a;
             Object(A.a)(this, t);
@@ -270,7 +271,7 @@
               ((a = Object(m.a)(
                 this,
                 (e = Object(d.a)(t)).call.apply(e, [this].concat(r))
-              )).state = { selector: Y(a.props.location.pathname) }),
+              )).state = { selector: P(a.props.location.pathname) }),
               (a.selectDoc = function(e, t) {
                 var n = { docNo: e, seqNo: t };
                 a.setState(function(e) {
@@ -315,14 +316,14 @@
                       i.a.createElement(
                         "div",
                         { className: t.title },
-                        i.a.createElement(Ae, null)
+                        i.a.createElement(pe, null)
                       ),
                       i.a.createElement(w.a, null),
                       i.a.createElement(
                         O.a,
                         { component: "nav", className: t.list },
                         x.map(function(t, a) {
-                          return i.a.createElement(Z, {
+                          return i.a.createElement(X, {
                             doc: t,
                             selectSeq: function(t) {
                               return e.selectDoc(a, t);
@@ -386,20 +387,20 @@
             t
           );
         })(i.a.Component),
-        me = Object(D.a)(
+        de = Object(D.a)(
           Object(o.withStyles)(function(e) {
             return Object(
               o.createStyles
             )({ root: { display: "flex", height: "100vh" }, drawer: { width: 320, flexShrink: 0, display: "flex", flexDirection: "column" }, drawerPaper: { width: 320 }, content: { flexGrow: 1, height: "100%", overflow: "hidden" }, frame: { width: "100%", height: "100%", border: 0 }, title: { flexGrow: 0 }, list: { flexGrow: 1, overflow: "auto" }, buttons: { position: "fixed", right: 20, bottom: 20, display: "flex" }, button: { margin: e.spacing.unit }, rightIcon: { marginLeft: e.spacing.unit } });
-          })(pe)
+          })(me)
         ),
-        de = Object(o.createMuiTheme)({ typography: { useNextVariants: !0 } });
+        ge = Object(o.createMuiTheme)({ typography: { useNextVariants: !0 } });
       l.a.render(
         i.a.createElement(
           o.MuiThemeProvider,
-          { theme: de },
+          { theme: ge },
           i.a.createElement(r.a, null),
-          i.a.createElement(u.a, null, i.a.createElement(me, null))
+          i.a.createElement(u.a, null, i.a.createElement(de, null))
         ),
         document.querySelector("#root")
       );
@@ -459,4 +460,4 @@
   },
   [[102, 2, 1]],
 ]);
-//# sourceMappingURL=main.5b14aa1f.chunk.js.map
+//# sourceMappingURL=main.1a5b1221.chunk.js.map

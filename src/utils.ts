@@ -19,6 +19,10 @@ export function setTitle(selector: DocumentSelector) {
   }
 }
 
+const DEFAULT_SELECTOR: DocumentSelector = {
+  docNo: 1,
+  seqNo: 2,
+};
 const PATH_REGEX = /^\/(\d+)(?:\/(\d+))?/;
 export function parsePathAndSetTitle(path: string): DocumentSelector {
   let selector: DocumentSelector;
@@ -49,10 +53,7 @@ export function parsePathAndSetTitle(path: string): DocumentSelector {
       };
     }
   } else {
-    selector = {
-      docNo: -1,
-      seqNo: 0,
-    };
+    selector = DEFAULT_SELECTOR;
   }
   setTitle(selector);
   return selector;
