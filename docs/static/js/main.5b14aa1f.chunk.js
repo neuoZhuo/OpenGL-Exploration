@@ -22,8 +22,8 @@
         g = a(28),
         h = a(26),
         b = a.n(h),
-        w = a(96),
-        E = a.n(w),
+        E = a(96),
+        w = a.n(E),
         v = a(95),
         f = a.n(v),
         N = a(43),
@@ -57,7 +57,7 @@
           t =
             n < 0 || n >= x.length
               ? { docNo: -1, seqNo: 0 }
-              : r < 0 && r >= x[n].sequences.length
+              : r >= 0 && r < x[n].sequences.length
               ? { docNo: n, seqNo: r }
               : { docNo: n, seqNo: 0 };
         } else t = { docNo: -1, seqNo: 0 };
@@ -237,7 +237,7 @@
                           b.a,
                           {
                             href:
-                              "https://www.zhihu.com/people/neuo/activities",
+                              "https://zhuanlan.zhihu.com/c_1078287059323654144",
                             target: "_blank",
                             "aria-label": "zhihu",
                           },
@@ -317,7 +317,7 @@
                         { className: t.title },
                         i.a.createElement(Ae, null)
                       ),
-                      i.a.createElement(E.a, null),
+                      i.a.createElement(w.a, null),
                       i.a.createElement(
                         O.a,
                         { component: "nav", className: t.list },
@@ -459,4 +459,4 @@
   },
   [[102, 2, 1]],
 ]);
-//# sourceMappingURL=main.9b3e2211.chunk.js.map
+//# sourceMappingURL=main.5b14aa1f.chunk.js.map

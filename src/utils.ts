@@ -37,7 +37,7 @@ export function parsePathAndSetTitle(path: string): DocumentSelector {
         docNo: -1,
         seqNo: 0,
       };
-    } else if (seqNo < 0 && seqNo >= docs[docNo].sequences.length) {
+    } else if (seqNo >= 0 && seqNo < docs[docNo].sequences.length) {
       selector = {
         docNo,
         seqNo,
