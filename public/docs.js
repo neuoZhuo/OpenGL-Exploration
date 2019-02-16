@@ -39,4 +39,42 @@ DOCS = [
       },
     ],
   },
+  {
+    name: "OpenGL ES 2.0 渲染管线 —— 总览、建模和图元",
+    url: "56442388",
+    sequences: [
+      {
+        name: "Points",
+        url: "2-0.html",
+      },
+      {
+        name: "Line strips",
+        url: "2-1.html",
+      },
+      {
+        name: "Line loops",
+        url: "2-2.html",
+      },
+      {
+        name: "Separate lines",
+        url: "2-3.html",
+      },
+      {
+        name: "Triangle strips",
+        url: "2-4.html",
+      },
+      {
+        name: "Triangle fans",
+        url: "2-5.html",
+      },
+      {
+        name: "Separate triangles",
+        url: "2-6.html",
+      },
+      {
+        name: "拟合球体",
+        url: "2-7.html",
+      },
+    ],
+  },
 ];

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.js"></script>
+
+    <!-- 改编自 @ https://threejs.org/examples/?q=line#webgl_lines_dashed -->
+
+    <script>
+      var SCREEN_WIDTH = window.innerWidth,
+        SCREEN_HEIGHT = window.innerHeight;
+      var camera, scene, line;
+      var group;
+      init();
+      animate();
+      function init() {
+        camera = new THREE.PerspectiveCamera(
+          60,
+          SCREEN_WIDTH / SCREEN_HEIGHT,
+          1,
+          200
+        );
+        camera.position.z = 150;
+
+        scene = new THREE.Scene();
+
+        var geometryCube = cube(50);
+        line = new THREE.LineLoop(
+          geometryCube,
+          new THREE.LineBasicMaterial({ color: 0xffaa00, linewidth: 3 })
+        );
+        line.computeLineDistances();
+
+        scene.add(line);
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+        document.body.appendChild(renderer.domElement);
+      }
+      function animate() {
+        requestAnimationFrame(animate);
+        line.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+      function cube(size) {
+        var h = size * 0.5;
+        var geometry = new THREE.BufferGeometry();
+        var position = [];
+        position.push(
+          -h,
+          -h,
+          -h,
+          -h,
+          -h,
+          h,
+          -h,
+          h,
+          h,
+          -h,
+          h,
+          -h,
+          h,
+          h,
+          -h,
+          h,
+          -h,
+          -h,
+          h,
+          -h,
+          h,
+          h,
+          h,
+          h
+        );
+        geometry.addAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(position, 3)
+        );
+        return geometry;
+      }
+    </script>
+  </body>
+</html>
