@@ -1,3 +1,10 @@
+import {
+  AppBar,
+  Hidden,
+  IconButton,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
@@ -9,6 +16,7 @@ import {
   WithStyles,
 } from "@material-ui/core/styles";
 import Link from "@material-ui/icons/Link";
+import MenuIcon from "@material-ui/icons/Menu";
 import Send from "@material-ui/icons/Send";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
@@ -28,9 +36,13 @@ const mainStyles = (theme: Theme) =>
       display: "flex",
       height: "100vh",
     },
+    menuButton: {
+      marginRight: 12,
+    },
     drawer: {
       width: drawerWidth,
       flexShrink: 0,
+      height: "100%",
       display: "flex",
       flexDirection: "column",
     },
@@ -41,6 +53,9 @@ const mainStyles = (theme: Theme) =>
       flexGrow: 1,
       height: "100%",
       overflow: "hidden",
+      [theme.breakpoints.down("xs")]: {
+        paddingTop: 56,
+      },
     },
     frame: {
       width: "100%",
@@ -72,10 +87,16 @@ class Main extends React.Component<
   WithStyles<typeof mainStyles> & RouteComponentProps,
   {
     selector: DocumentSelector;
+    mobileOpen: boolean;
   }
 > {
   public state = {
     selector: parsePathAndSetTitle(this.props.location.pathname),
+    mobileOpen: false,
+  };
+
+  public handleDrawerToggle = () => {
+    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
   public selectDoc = (docNo: number, seqNo: number) => {
@@ -99,32 +120,72 @@ class Main extends React.Component<
       const { docNo, seqNo } = selector;
       url = joinPath(SOURCE_PREFIX, docs[docNo].sequences[seqNo].url);
     }
+    const title = (
+      <div className={classes.title}>
+        <Title />
+      </div>
+    );
+    const list = (
+      <List component="nav" className={classes.list}>
+        {docs.map((doc, index) => {
+          return (
+            <Item
+              doc={doc}
+              selectSeq={(seqNo: number) => this.selectDoc(index, seqNo)}
+              key={index}
+            />
+          );
+        })}
+      </List>
+    );
     return (
       <div className={classes.root}>
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-          anchor="left"
-        >
-          <div className={classes.title}>
-            <Title />
-          </div>
-          <Divider />
-          <List component="nav" className={classes.list}>
-            {docs.map((doc, index) => {
-              return (
-                <Item
-                  doc={doc}
-                  selectSeq={(seqNo: number) => this.selectDoc(index, seqNo)}
-                  key={index}
-                />
-              );
-            })}
-          </List>
-        </Drawer>
+        <Hidden smUp implementation="css">
+          <AppBar position="fixed">
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.handleDrawerToggle}
+                className={classes.menuButton}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" color="inherit" noWrap>
+                建议 PC 端浏览
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            className={classes.drawer}
+            variant="temporary"
+            anchor="left"
+            open={this.state.mobileOpen}
+            onClose={this.handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            {title}
+            <Divider />
+            {list}
+          </Drawer>
+        </Hidden>
+        <Hidden xsDown implementation="css">
+          <Drawer
+            className={classes.drawer}
+            variant="permanent"
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            anchor="left"
+            open
+          >
+            {title}
+            <Divider />
+            {list}
+          </Drawer>
+        </Hidden>
         <main className={classes.content}>
           {url ? <iframe className={classes.frame} src={url} /> : null}
         </main>
