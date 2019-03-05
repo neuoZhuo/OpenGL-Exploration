@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.js"></script>
+
+    <script>
+      var SCREEN_WIDTH = window.innerWidth,
+        SCREEN_HEIGHT = window.innerHeight;
+      var camera, scene;
+      var group;
+      var distance;
+      var reverse;
+
+      init();
+      animate();
+      function init() {
+        camera = new THREE.PerspectiveCamera(
+          45,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+        camera.position.z = 10;
+        camera.position.y = 10;
+        camera.position.x = 10;
+
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+        scene = new THREE.Scene();
+
+        group = new THREE.Group();
+
+        const size = 2;
+        distance = size * 2;
+        reverse = false;
+
+        var geometry = new THREE.BoxBufferGeometry(size, size, size);
+
+        const cube = new THREE.Mesh(
+          geometry,
+          new THREE.MeshLambertMaterial({
+            color: 0xff0000,
+          })
+        );
+
+        group = new THREE.Group();
+        group.add(cube);
+
+        scene.add(group);
+
+        var light1 = new THREE.PointLight(0xffffff, 1, 100);
+        light1.position.set(0, 0, 30);
+
+        var light2 = new THREE.PointLight(0xffffff, 1, 100);
+        light2.position.set(0, 30, 30);
+
+        var light3 = new THREE.PointLight(0xffffff, 1, 100);
+        light3.position.set(30, -30, 30);
+
+        scene.add(light1);
+        scene.add(light2);
+        scene.add(light3);
+
+        var axesHelper = new THREE.AxesHelper(5);
+        scene.add(axesHelper);
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+        document.body.appendChild(renderer.domElement);
+      }
+      function animate() {
+        requestAnimationFrame(animate);
+
+        if (!reverse) {
+          group.position.x += 0.1;
+          group.scale.x += 0.02;
+          group.scale.z -= 0.02;
+          if (group.position.x > distance) {
+            reverse = true;
+          }
+        } else {
+          group.scale.x -= 0.02;
+          group.scale.z += 0.02;
+          group.position.x -= 0.1;
+          if (group.position.x < -distance) {
+            reverse = false;
+          }
+        }
+
+        group.rotation.x += 0.01;
+        group.rotation.z += 0.01;
+
+        renderer.render(scene, camera);
+      }
+    </script>
+  </body>
+</html>
