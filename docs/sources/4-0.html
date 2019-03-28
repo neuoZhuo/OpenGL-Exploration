@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.js"></script>
+
+    <script>
+      var camera, scene, renderer, group;
+      init();
+      animate();
+      function init() {
+        scene = new THREE.Scene();
+
+        camera = new THREE.PerspectiveCamera(
+          45,
+          window.innerWidth / window.innerHeight / 2,
+          1,
+          1000
+        );
+        camera.position.set(0, 0, 500);
+
+        scene.add(new THREE.AmbientLight(0x222222));
+        var light = new THREE.PointLight(0xffffff);
+        light.position.copy(camera.position);
+        scene.add(light);
+
+        group = new THREE.Group();
+        scene.add(group);
+
+        var closedSpline = new THREE.CatmullRomCurve3([
+          new THREE.Vector3(-60, -100, 60),
+          new THREE.Vector3(-60, 20, 60),
+          new THREE.Vector3(-60, 120, 60),
+          new THREE.Vector3(60, 20, -60),
+          new THREE.Vector3(60, -100, -60),
+        ]);
+        closedSpline.curveType = "catmullrom";
+        closedSpline.closed = true;
+        var extrudeSettings = {
+          steps: 100,
+          bevelEnabled: false,
+          extrudePath: closedSpline,
+        };
+        var pts = [],
+          count = 3;
+        for (var i = 0; i < count; i++) {
+          var l = 20;
+          var a = ((2 * i) / count) * Math.PI;
+          pts.push(new THREE.Vector2(Math.cos(a) * l, Math.sin(a) * l));
+        }
+        var shape = new THREE.Shape(pts);
+        var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
+        var material = new THREE.MeshLambertMaterial({
+          color: 0xb00000,
+          wireframe: false,
+        });
+        var mesh = new THREE.Mesh(geometry, material);
+        group.add(mesh);
+
+        var material2 = new THREE.MeshLambertMaterial({
+          color: 0xff8000,
+          wireframe: false,
+        });
+        var materials = [material, material2];
+        var extrudeSettings = {
+          depth: 20,
+          steps: 1,
+          bevelEnabled: true,
+          bevelThickness: 2,
+          bevelSize: 4,
+          bevelSegments: 1,
+        };
+        var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
+        var mesh = new THREE.Mesh(geometry, materials);
+        mesh.position.set(50, 100, 50);
+        group.add(mesh);
+
+        scene.add(new THREE.AxesHelper(150));
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.autoClear = false;
+
+        document.body.appendChild(renderer.domElement);
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        group.rotation.y += 0.01;
+        render();
+      }
+
+      function render() {
+        renderer.clear();
+
+        renderer.setViewport(0, 0, window.innerWidth / 2, window.innerHeight);
+
+        camera.position.set(0, 0, 500);
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+        renderer.render(scene, camera);
+
+        renderer.setViewport(
+          window.innerWidth / 2,
+          0,
+          window.innerWidth / 2,
+          window.innerHeight
+        );
+
+        camera.position.set(500, 0, 500);
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+        renderer.render(scene, camera);
+      }
+    </script>
+  </body>
+</html>
